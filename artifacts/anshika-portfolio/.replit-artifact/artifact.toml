@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Anshika Singh Portfolio"
+description = "A creative personal portfolio for Anshika Singh, blending data analytics, UI/UX design, and machine learning projects into a distinctive interactive showcase."
+version = "1.0.0"
+id = "artifacts/anshika-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19059
+
+[services.development]
+run = "pnpm --filter @workspace/anshika-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/anshika-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/anshika-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19059"
+BASE_PATH = "/"
