@@ -2,6 +2,7 @@ import { type ReactNode, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, ArrowUpRight, Check, ChevronRight, Copy, Database, Github, Linkedin, Mail, Menu, MoveDown, PenTool, X } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Analytics } from '@vercel/analytics/react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -281,7 +282,7 @@ function RoutedErrorBoundary({ children }: { children: ReactNode }) {
 }
 
 function Root() {
-  return <QueryClientProvider client={queryClient}><TooltipProvider><WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}><Router /></WouterRouter><Toaster /></TooltipProvider></QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}><TooltipProvider><WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}><Router /></WouterRouter><Toaster /><Analytics /></TooltipProvider></QueryClientProvider>;
 }
 
 export default Root;
