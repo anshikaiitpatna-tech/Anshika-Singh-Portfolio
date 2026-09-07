@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowDownRight, ArrowUpRight, Check, ChevronRight, Copy, Database, Github, Linkedin, Mail, Menu, MoveDown, PenTool, Phone, X } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Check, ChevronRight, Copy, Database, Github, Linkedin, Mail, Menu, MoveDown, PenTool, X } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -251,7 +251,7 @@ function App() {
                <div><p className="eyebrow section-kicker">Level 06 / Open channel</p><h2 className="section-title section-title-large">Let’s<br /><span className="section-title-red">make</span><br />sense.</h2></div>
                <div><p className="max-w-md text-xl leading-relaxed text-pixel-cream/75">Have a messy question, a product that needs a clearer surface, or a dataset with a story hiding in it?</p><div className="mt-8 flex flex-wrap gap-3"><motion.a href="mailto:anshikaiitpatna@gmail.com" data-testid="link-email" className="cta-button inline-flex items-center" whileHover={{ x: 4 }} transition={ctaTransition}><Mail className="mr-2 h-4 w-4" /> Email Anshika <ArrowUpRight className="ml-2 h-3 w-3" /></motion.a><button type="button" data-testid="button-copy-email" onClick={copyEmail} className="outline-button outline-button-light inline-flex items-center gap-2">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />} {copied ? 'Copied' : 'Copy email'}</button></div></div>
             </SwingReveal>
-            <div className="contact-footer"><div className="flex flex-wrap gap-x-7 gap-y-3"><a href="tel:+919580327613" data-testid="link-phone" className="contact-link"><Phone className="mr-2 inline h-3 w-3" />+91 95803 27613</a><a href="mailto:anshikaiitpatna@gmail.com" data-testid="link-footer-email" className="contact-link">anshikaiitpatna@gmail.com</a></div><div className="flex gap-5"><a href="#contact" onClick={(event) => event.preventDefault()} data-testid="link-linkedin" className="contact-link"><Linkedin className="mr-1 inline h-3 w-3" /> LinkedIn</a><a href="#contact" onClick={(event) => event.preventDefault()} data-testid="link-github" className="contact-link"><Github className="mr-1 inline h-3 w-3" /> GitHub</a></div></div>
+             <div className="contact-footer"><div className="flex flex-wrap gap-x-7 gap-y-3"><a href="mailto:anshikaiitpatna@gmail.com" data-testid="link-footer-email" className="contact-link">anshikaiitpatna@gmail.com</a></div><div className="flex gap-5"><a href="#contact" onClick={(event) => event.preventDefault()} data-testid="link-linkedin" className="contact-link"><Linkedin className="mr-1 inline h-3 w-3" /> LinkedIn</a><a href="#contact" onClick={(event) => event.preventDefault()} data-testid="link-github" className="contact-link"><Github className="mr-1 inline h-3 w-3" /> GitHub</a></div></div>
           </div>
         </section>
       </main>
