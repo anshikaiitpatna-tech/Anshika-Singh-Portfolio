@@ -1,0 +1,14 @@
+Redesign the visual theme of my portfolio to a retro 8-bit/pixel-art video game aesthetic, while keeping all my existing content, sections, and functionality (project modals, contact form, navigation) exactly as they are — just re-skin them.
+
+Typography: Replace Barlow Condensed/DM Sans with a pixel font for headings (e.g. "Press Start 2P" from Google Fonts) and a readable retro-monospace for body text (e.g. "VT323" or "Silkscreen") — headings in pixel font can get large/chunky, body text should stay legible at smaller sizes.
+Color palette: Dark navy/black background with a starry/dotted texture, hot pink (
+#ff4fd8-ish) and neon green (
+#39ff6a-ish) as primary accents, soft yellow for highlights — swap out the current spider-red/blue scheme entirely.
+Hero section: Frame it like a game "start screen" — a bordered console-style box with a blinking "START" button (use my existing hero CTA), an XP/level bar showing something like "UI/UX Level 03", and a pixel-art style avatar or sprite if I provide one.
+Section headers as "Levels": Rename section kickers to "Level 01", "Level 02" etc. (already numbered 01-06 in code) and give each a pixel-bordered panel look.
+Cards as game UI panels: Give project cards, skill panels, and the modal a pixel-bordered "dialogue box" look (thick pixelated border, slight drop shadow, no rounded corners — sharp pixel corners instead) instead of the current glassy card style.
+Micro-interactions: Replace smooth framer-motion easing with a snappier, stepped/blocky feel (short duration, no easing curves — mimic old-school game menu transitions) on hover and reveal.
+Icons: Swap current lucide-react icons for a pixel-icon style where possible, or keep lucide but render them inside pixel-bordered badge containers.
+Scroll cue / footer: Style the bottom nav/scroll indicators like a game HUD strip (bordered ribbon bar, like a status bar).
+
+Keep it accessible — text contrast should stay readable (avoid neon-on-neon), and keep mobile responsiveness intact. Implement all colors and fonts via the @theme block in src/index.css (currently has --color-spider-* variables — replace with new pixel-theme variables) rather than hardcoding inline styles, so it stays easy to tweak later.

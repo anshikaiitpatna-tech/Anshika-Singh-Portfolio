@@ -54,10 +54,10 @@ function SwingReveal({ children, className = '', delay = 0 }: { children: ReactN
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 28, rotate: -3 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, rotate: 0 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 16, x: -8 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, amount: 0.16 }}
-      transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 240, damping: 22, mass: 0.8, delay }}
+      transition={reduceMotion ? { duration: 0 } : { duration: 0.18, ease: 'linear', delay }}
     >
       {children}
     </motion.div>
@@ -134,7 +134,7 @@ function App() {
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   };
-  const ctaTransition = reduceMotion ? { duration: 0 } : { type: 'spring' as const, stiffness: 420, damping: 18 };
+  const ctaTransition = reduceMotion ? { duration: 0 } : { duration: 0.12, ease: 'linear' as const };
 
   return (
     <div className="portfolio-shell">
@@ -164,9 +164,9 @@ function App() {
             <div className="relative z-10">
               <SwingReveal className="hero-kicker"><span className="accent-rule" /><p className="eyebrow muted-copy">IIT Patna / Mechanical Engineering / 2024—28</p></SwingReveal>
               <SwingReveal delay={0.08}><h1 className="hero-title">Systems<br /><span className="hero-title-red">made</span><br /><span className="hero-title-blue">clear.</span></h1></SwingReveal>
-              <SwingReveal delay={0.16}><p className="hero-intro">Anshika Singh turns complex systems into clear, useful stories — through data analytics, interface design, and an engineer’s instinct for how things work.</p></SwingReveal>
+               <SwingReveal delay={0.16}><p className="hero-intro">Anshika Singh turns complex systems into clear, useful stories — through data analytics, interface design, and an engineer’s instinct for how things work.</p><div className="hero-status" aria-label="UI/UX level 03 progress"><div className="hero-status-meta"><span>UI/UX LEVEL 03</span><span>XP 680 / 1000</span></div><div className="xp-track"><span className="xp-fill" /></div></div></SwingReveal>
               <SwingReveal delay={0.24} className="hero-actions">
-                <motion.a href="#work" data-testid="link-hero-work" className="cta-button inline-flex items-center" whileHover={{ scale: 1.04, rotate: -0.5 }} transition={ctaTransition}>Explore selected work <ArrowDownRight className="ml-3 h-4 w-4" /></motion.a>
+                 <motion.a href="#work" data-testid="link-hero-work" className="cta-button start-button inline-flex items-center" whileHover={{ x: 4 }} transition={ctaTransition}><span className="start-blink">START</span><ArrowDownRight className="ml-3 h-4 w-4" /></motion.a>
                 <motion.a href="#contact" data-testid="link-hero-contact" className="outline-button inline-flex items-center" whileHover={{ scale: 1.03 }} transition={ctaTransition}>Say hello</motion.a>
               </SwingReveal>
             </div>
@@ -182,17 +182,17 @@ function App() {
               <div className="hero-sticker">make signal visible ↗</div>
             </SwingReveal>
           </div>
-          <div className="scroll-cue"><MoveDown className="h-4 w-4 text-spider-red" /><span className="eyebrow muted-copy">Scroll to inspect</span></div>
+          <div className="scroll-cue"><MoveDown className="h-4 w-4 text-pixel-pink" /><span className="eyebrow muted-copy">Scroll to inspect</span></div>
         </section>
 
         <WebDivider className="mx-auto max-w-[1440px] px-5 md:px-10" />
         <div className="marquee-strip">
-          <div className="marquee flex w-max items-center gap-8 whitespace-nowrap"><span className="eyebrow">analytics with a point of view</span><span className="text-spider-red">+</span><span className="eyebrow">interfaces with a reason</span><span className="text-spider-blue-light">+</span><span className="eyebrow">systems made legible</span><span className="text-spider-red">+</span><span className="eyebrow">analytics with a point of view</span><span className="text-spider-blue-light">+</span><span className="eyebrow">interfaces with a reason</span></div>
+          <div className="marquee flex w-max items-center gap-8 whitespace-nowrap"><span className="eyebrow">analytics with a point of view</span><span className="text-pixel-pink">+</span><span className="eyebrow">interfaces with a reason</span><span className="text-pixel-green">+</span><span className="eyebrow">systems made legible</span><span className="text-pixel-pink">+</span><span className="eyebrow">analytics with a point of view</span><span className="text-pixel-green">+</span><span className="eyebrow">interfaces with a reason</span></div>
         </div>
 
         <section className="section-shell">
           <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-24 md:grid-cols-[.75fr_1.25fr] md:items-end md:px-10 md:py-36">
-            <SwingReveal><p className="eyebrow section-kicker">01 / A useful tension</p><h2 className="section-title">The numbers<br /><span className="section-title-blue">have a pulse.</span></h2></SwingReveal>
+            <SwingReveal><p className="eyebrow section-kicker">Level 01 / A useful tension</p><h2 className="section-title">The numbers<br /><span className="section-title-blue">have a pulse.</span></h2></SwingReveal>
             <SwingReveal delay={0.1} className="stats-grid">
               {[['10K+', 'transactions read'], ['1.51%', 'fraud found'], ['51,289', 'sales decoded']].map(([value, label], i) => <div key={label} data-testid={`stat-${i}`}><p className="stat-value">{value}</p><p className="eyebrow muted-copy">{label}</p></div>)}
             </SwingReveal>
@@ -203,7 +203,7 @@ function App() {
         <WebDivider className="mx-auto max-w-[1440px] px-5 md:px-10" />
         <section id="work" className="section-projects web-surface">
           <div className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
-            <SwingReveal className="mb-16 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow section-kicker">02 / Selected investigations</p><h2 className="section-title section-title-large">Work that<br /><span className="section-title-blue">moves the needle.</span></h2></div><p className="max-w-xs text-sm leading-relaxed muted-copy">A few studies in making operational data feel less operational — and more like a clear next move.</p></SwingReveal>
+             <SwingReveal className="mb-16 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow section-kicker">Level 02 / Selected investigations</p><h2 className="section-title section-title-large">Work that<br /><span className="section-title-blue">moves the needle.</span></h2></div><p className="max-w-xs text-sm leading-relaxed muted-copy">A few studies in making operational data feel less operational — and more like a clear next move.</p></SwingReveal>
             <div className="project-list">{projects.map((project, index) => <SwingReveal key={project.id} delay={index * 0.06}><article className="project-row group grid gap-7 md:grid-cols-[.18fr_1.25fr_.68fr_.8fr] md:items-center" data-testid={`card-project-${project.id}`}>
               <span className="project-index font-mono-ui text-xs">{project.number}</span>
               <div><p className="eyebrow project-muted mb-3">{project.kicker}</p><h3 className="project-title">{project.title}</h3><p className="project-muted mt-4 max-w-lg text-sm leading-relaxed">{project.description}</p><div className="mt-5 flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="tag-chip">{tag}</span>)}</div></div>
@@ -217,8 +217,8 @@ function App() {
         <section id="approach" className="section-shell">
           <div className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
             <div className="grid gap-14 md:grid-cols-[.68fr_1.32fr]">
-              <SwingReveal><p className="eyebrow section-kicker">03 / The method</p><h2 className="section-title">Look.<br />Sort.<br /><span className="section-title-red">Shape.</span></h2></SwingReveal>
-              <SwingReveal delay={0.1} className="method-list">{[['01', 'Look closer', 'Start with the lived mess: raw tables, fuzzy needs, edge cases, the thing nobody thought to ask yet.'], ['02', 'Sort the signal', 'Use SQL, models, and visual hierarchy to find what is meaningful — not just what is available.'], ['03', 'Shape the handoff', 'Turn the insight into a dashboard, interface, or decision that another person can pick up and use.']].map(([number, title, body]) => <div key={number} className="method-row"><span className="font-mono-ui text-xs text-spider-red">{number}</span><h3 className="method-title">{title}</h3><p className="max-w-md text-sm leading-relaxed muted-copy">{body}</p></div>)}</SwingReveal>
+              <SwingReveal><p className="eyebrow section-kicker">Level 03 / The method</p><h2 className="section-title">Look.<br />Sort.<br /><span className="section-title-red">Shape.</span></h2></SwingReveal>
+               <SwingReveal delay={0.1} className="method-list">{[['01', 'Look closer', 'Start with the lived mess: raw tables, fuzzy needs, edge cases, the thing nobody thought to ask yet.'], ['02', 'Sort the signal', 'Use SQL, models, and visual hierarchy to find what is meaningful — not just what is available.'], ['03', 'Shape the handoff', 'Turn the insight into a dashboard, interface, or decision that another person can pick up and use.']].map(([number, title, body]) => <div key={number} className="method-row"><span className="font-mono-ui text-xs text-pixel-pink">{number}</span><h3 className="method-title">{title}</h3><p className="max-w-md text-sm leading-relaxed muted-copy">{body}</p></div>)}</SwingReveal>
             </div>
           </div>
         </section>
@@ -227,19 +227,19 @@ function App() {
         <section id="about" className="section-ink web-surface">
           <div className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
             <SwingReveal className="grid gap-12 md:grid-cols-[1fr_1fr]">
-              <div><p className="eyebrow section-kicker">04 / In the field</p><h2 className="section-title section-title-large">Still<br /><span className="section-title-red">learning</span><br />by doing.</h2></div>
-              <div className="flex flex-col justify-end"><p className="max-w-lg text-xl leading-relaxed text-spider-mist/75 md:text-2xl">Currently studying Mechanical Engineering at IIT Patna while working at the intersection of interface thinking, analytical rigour, and emerging machine learning.</p><div className="mt-10 border-t border-spider-mist/20 pt-5"><p className="eyebrow text-spider-mist/50">Anshika, in one line</p><p className="mt-3 font-display text-2xl font-semibold tracking-[-.04em]">A mechanical mind with a soft spot for sharp layouts.</p></div></div>
+               <div><p className="eyebrow section-kicker">Level 04 / In the field</p><h2 className="section-title section-title-large">Still<br /><span className="section-title-red">learning</span><br />by doing.</h2></div>
+               <div className="flex flex-col justify-end"><p className="max-w-lg text-xl leading-relaxed text-pixel-cream/75 md:text-2xl">Currently studying Mechanical Engineering at IIT Patna while working at the intersection of interface thinking, analytical rigour, and emerging machine learning.</p><div className="mt-10 border-t border-pixel-cream/20 pt-5"><p className="eyebrow text-pixel-cream/50">Anshika, in one line</p><p className="mt-3 font-display text-2xl font-semibold tracking-[-.04em]">A mechanical mind with a soft spot for sharp layouts.</p></div></div>
             </SwingReveal>
-            <div className="mt-24 grid gap-4 md:grid-cols-3">{skillGroups.map(({ label, icon: Icon, items }, groupIndex) => <SwingReveal key={label} delay={(groupIndex + 1) * 0.08} className="skill-group"><div className="mb-8 flex items-center justify-between"><p className="eyebrow text-spider-red">{label}</p><Icon className="h-5 w-5 text-spider-blue-light" /></div><ul className="space-y-3">{items.map((item) => <li key={item} className="flex items-center gap-3 text-sm text-spider-mist/70"><ChevronRight className="h-3 w-3 text-spider-red" />{item}</li>)}</ul></SwingReveal>)}</div>
+            <div className="mt-24 grid gap-4 md:grid-cols-3">{skillGroups.map(({ label, icon: Icon, items }, groupIndex) => <SwingReveal key={label} delay={(groupIndex + 1) * 0.08} className="skill-group"><div className="mb-8 flex items-center justify-between"><p className="eyebrow text-pixel-pink">{label}</p><Icon className="h-5 w-5 text-pixel-green" /></div><ul className="space-y-3">{items.map((item) => <li key={item} className="flex items-center gap-3 text-sm text-pixel-cream/70"><ChevronRight className="h-3 w-3 text-pixel-pink" />{item}</li>)}</ul></SwingReveal>)}</div>
           </div>
         </section>
 
         <WebDivider className="mx-auto max-w-[1440px] px-5 md:px-10" />
         <section className="section-shell">
           <div className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
-            <SwingReveal className="mb-14"><p className="eyebrow section-kicker">05 / Experience, in motion</p><h2 className="section-title section-title-large">A practice<br /><span className="section-title-blue">still becoming.</span></h2></SwingReveal>
+             <SwingReveal className="mb-14"><p className="eyebrow section-kicker">Level 05 / Experience, in motion</p><h2 className="section-title section-title-large">A practice<br /><span className="section-title-blue">still becoming.</span></h2></SwingReveal>
             <div className="experience-list">
-              {[['Nov 2025 — Present', 'UI/UX Design Intern', 'Inditronix AI Labs', 'Working on interfaces that help technical products communicate with more clarity.'], ['Aug 2025 — Apr 2026', 'Design Sub-coordinator / Co-Lead', 'E-Cell · SCME · Syahi · InvisionX · NSS · SevaUtsav / IIT Patna', 'Leading visual thinking across campus communities — from first idea to the final pixel.'], ['2024 — 2028', 'B.Tech Mechanical Engineering', 'Indian Institute of Technology, Patna', 'Building the technical foundation for a more curious, systems-minded creative practice.']].map(([date, role, place, body], index) => <SwingReveal key={role} delay={index * 0.08} className="experience-item"><span className="experience-dot" /><p className="eyebrow text-spider-red">{date}</p><h3 className="experience-role">{role}</h3><p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-spider-blue-light">{place}</p><p className="mt-4 max-w-xl text-sm leading-relaxed muted-copy">{body}</p></SwingReveal>)}
+              {[['Nov 2025 — Present', 'UI/UX Design Intern', 'Inditronix AI Labs', 'Working on interfaces that help technical products communicate with more clarity.'], ['Aug 2025 — Apr 2026', 'Design Sub-coordinator / Co-Lead', 'E-Cell · SCME · Syahi · InvisionX · NSS · SevaUtsav / IIT Patna', 'Leading visual thinking across campus communities — from first idea to the final pixel.'], ['2024 — 2028', 'B.Tech Mechanical Engineering', 'Indian Institute of Technology, Patna', 'Building the technical foundation for a more curious, systems-minded creative practice.']].map(([date, role, place, body], index) => <SwingReveal key={role} delay={index * 0.08} className="experience-item"><span className="experience-dot" /><p className="eyebrow text-pixel-pink">{date}</p><h3 className="experience-role">{role}</h3><p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-pixel-green">{place}</p><p className="mt-4 max-w-xl text-sm leading-relaxed muted-copy">{body}</p></SwingReveal>)}
             </div>
           </div>
         </section>
@@ -248,21 +248,21 @@ function App() {
         <section id="contact" className="section-contact web-surface">
           <div className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
             <SwingReveal className="grid gap-12 md:grid-cols-[1.1fr_.9fr] md:items-end">
-              <div><p className="eyebrow section-kicker">06 / Open channel</p><h2 className="section-title section-title-large">Let’s<br /><span className="section-title-red">make</span><br />sense.</h2></div>
-              <div><p className="max-w-md text-xl leading-relaxed text-spider-mist/75">Have a messy question, a product that needs a clearer surface, or a dataset with a story hiding in it?</p><div className="mt-8 flex flex-wrap gap-3"><motion.a href="mailto:anshikaiitpatna@gmail.com" data-testid="link-email" className="cta-button inline-flex items-center" whileHover={{ scale: 1.04, rotate: -0.5 }} transition={ctaTransition}><Mail className="mr-2 h-4 w-4" /> Email Anshika <ArrowUpRight className="ml-2 h-3 w-3" /></motion.a><button type="button" data-testid="button-copy-email" onClick={copyEmail} className="outline-button outline-button-light inline-flex items-center gap-2">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />} {copied ? 'Copied' : 'Copy email'}</button></div></div>
+               <div><p className="eyebrow section-kicker">Level 06 / Open channel</p><h2 className="section-title section-title-large">Let’s<br /><span className="section-title-red">make</span><br />sense.</h2></div>
+               <div><p className="max-w-md text-xl leading-relaxed text-pixel-cream/75">Have a messy question, a product that needs a clearer surface, or a dataset with a story hiding in it?</p><div className="mt-8 flex flex-wrap gap-3"><motion.a href="mailto:anshikaiitpatna@gmail.com" data-testid="link-email" className="cta-button inline-flex items-center" whileHover={{ x: 4 }} transition={ctaTransition}><Mail className="mr-2 h-4 w-4" /> Email Anshika <ArrowUpRight className="ml-2 h-3 w-3" /></motion.a><button type="button" data-testid="button-copy-email" onClick={copyEmail} className="outline-button outline-button-light inline-flex items-center gap-2">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />} {copied ? 'Copied' : 'Copy email'}</button></div></div>
             </SwingReveal>
             <div className="contact-footer"><div className="flex flex-wrap gap-x-7 gap-y-3"><a href="tel:+919580327613" data-testid="link-phone" className="contact-link"><Phone className="mr-2 inline h-3 w-3" />+91 95803 27613</a><a href="mailto:anshikaiitpatna@gmail.com" data-testid="link-footer-email" className="contact-link">anshikaiitpatna@gmail.com</a></div><div className="flex gap-5"><a href="#contact" onClick={(event) => event.preventDefault()} data-testid="link-linkedin" className="contact-link"><Linkedin className="mr-1 inline h-3 w-3" /> LinkedIn</a><a href="#contact" onClick={(event) => event.preventDefault()} data-testid="link-github" className="contact-link"><Github className="mr-1 inline h-3 w-3" /> GitHub</a></div></div>
           </div>
         </section>
       </main>
 
-      <footer className="site-footer"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-3 md:flex-row"><p className="font-mono-ui text-[9px] uppercase tracking-[.1em] text-spider-mist/50">Anshika Singh / personal studio</p><p className="font-mono-ui text-[9px] uppercase tracking-[.1em] text-spider-mist/50">Made with curiosity · IIT Patna</p></div></footer>
+      <footer className="site-footer"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-3 md:flex-row"><p className="font-mono-ui text-[9px] uppercase tracking-[.1em] text-pixel-cream/50">Anshika Singh / personal studio</p><p className="font-mono-ui text-[9px] uppercase tracking-[.1em] text-pixel-cream/50">Made with curiosity · IIT Patna</p></div></footer>
 
       <AnimatePresence>
         {activeProject && <motion.div className="modal-backdrop" role="dialog" aria-modal="true" aria-label={`${activeProject.title} case notes`} onClick={() => setActiveProject(null)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div className="project-modal" onClick={(event) => event.stopPropagation()} initial={reduceMotion ? false : { opacity: 0, y: 24, rotate: -2 }} animate={reduceMotion ? undefined : { opacity: 1, y: 0, rotate: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: 18, rotate: 1 }} transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 280, damping: 24 }}>
-            <div className="flex items-start justify-between gap-5"><div><p className="eyebrow text-spider-red">Case notes / {activeProject.number}</p><h2 className="modal-title">{activeProject.title}</h2></div><button type="button" data-testid="button-close-project" aria-label="Close project notes" onClick={() => setActiveProject(null)} className="modal-close"><X size={18} /></button></div>
-            <div className="mt-10 border-t border-spider-mist/15 pt-7"><p className="max-w-xl text-lg leading-relaxed text-spider-mist/75">{activeProject.description}</p><ul className="mt-8 space-y-4">{activeProject.details.map((detail) => <li key={detail} className="flex gap-3 text-sm leading-relaxed text-spider-mist/80"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-spider-red" />{detail}</li>)}</ul></div>
+            <div className="flex items-start justify-between gap-5"><div><p className="eyebrow text-pixel-pink">Case notes / {activeProject.number}</p><h2 className="modal-title">{activeProject.title}</h2></div><button type="button" data-testid="button-close-project" aria-label="Close project notes" onClick={() => setActiveProject(null)} className="modal-close"><X size={18} /></button></div>
+            <div className="mt-10 border-t border-pixel-cream/15 pt-7"><p className="max-w-xl text-lg leading-relaxed text-pixel-cream/75">{activeProject.description}</p><ul className="mt-8 space-y-4">{activeProject.details.map((detail) => <li key={detail} className="flex gap-3 text-sm leading-relaxed text-pixel-cream/80"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-pixel-pink" />{detail}</li>)}</ul></div>
             <div className="mt-10 flex flex-wrap gap-2">{activeProject.tags.map((tag) => <span key={tag} className="tag-chip tag-chip-light">{tag}</span>)}</div>
           </motion.div>
         </motion.div>}
